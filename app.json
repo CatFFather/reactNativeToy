@@ -22,7 +22,10 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.catffather.myapp"
+      "package": "com.catffather.myapp",
+      "config": {
+        "googleMaps": { "apiKey": "AIzaSyDrFQLniFBrOAUvXhkklyt86BAPC5EIEBI" }   
+     }
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -31,6 +34,9 @@
       "eas": {
         "projectId": "4203c952-e82d-49d2-a8e5-815fa882249f"
       }
-    }
+    },
+    "plugins": [
+      "react-native-compressor"
+    ]
   }
 }
