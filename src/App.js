@@ -1,10 +1,9 @@
-// You can import Ionicons from @expo/vector-icons if you use Expo or
-// react-native-vector-icons/Ionicons otherwise.
 import * as React from 'react';
 import { Text, View, TextInput } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
 function HomeScreen() {
   return (
@@ -22,12 +21,17 @@ function SettingsScreen() {
   );
 }
 
+const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Settings" component={SettingsScreen} />
+      </Stack.Navigator>
+      {/* <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
@@ -47,7 +51,7 @@ export default function App() {
       >
         <Tab.Screen name="Home" component={HomeScreen} />
         <Tab.Screen name="Settings" component={SettingsScreen} />
-      </Tab.Navigator>
+      </Tab.Navigator> */}
     </NavigationContainer>
   );
 }
