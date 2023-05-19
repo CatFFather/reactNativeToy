@@ -10,7 +10,6 @@ function HomeScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Home!??</Text>
-      <TextInput secureTextEntry />
     </View>
   );
 }
@@ -32,7 +31,6 @@ export default function App() {
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
-
             if (route.name === 'Home') {
               iconName = focused
                 ? 'ios-information-circle'
@@ -40,7 +38,6 @@ export default function App() {
             } else if (route.name === 'Settings') {
               iconName = focused ? 'ios-list' : 'ios-list';
             }
-
             // You can return any component that you like here!
             return <Ionicons name={iconName} size={size} color={color} />;
           },
