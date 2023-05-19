@@ -1,37 +1,43 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import { Text, View, TextInput } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import {
+  initialWindowMetrics,
+  SafeAreaProvider,
+  useSafeAreaInsets,
+} from 'react-native-safe-area-context';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-
-function HomeScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Home!??</Text>
-    </View>
-  );
-}
-
-function SettingsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Settings!</Text>
-    </View>
-  );
-}
+import { basicScreenStyle } from './src/styles/commonStyle';
+// TODO Navigation 에 재정의 필요
+import LoginScreen from './src/screens/auth/LoginScreen'; // 로그인
+import JoinMemberScreen from './src/screens/auth/JoinMemberScreen'; // 회원가입
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Settings" component={SettingsScreen} />
-      </Stack.Navigator>
-      {/* <Tab.Navigator
+    <SafeAreaProvider>
+      <NavigationContainer>
+        {/* before login */}
+        <Stack.Navigator
+          initialRouteName="LoginScreen"
+          screenOptions={{
+            ...basicScreenStyle,
+          }}
+        >
+          <Stack.Screen
+            name="LoginScreen"
+            component={LoginScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen name="JoinMemberScreen" component={JoinMemberScreen} />
+        </Stack.Navigator>
+
+        {/* after login */}
+        {/* <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
@@ -52,6 +58,7 @@ export default function App() {
         <Tab.Screen name="Home" component={HomeScreen} />
         <Tab.Screen name="Settings" component={SettingsScreen} />
       </Tab.Navigator> */}
-    </NavigationContainer>
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 }
