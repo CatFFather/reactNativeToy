@@ -19,7 +19,7 @@ export default function labelInput(props) {
 const styles = StyleSheet.create({
   lable: {
     color: '#000000',
-    fontSize: '12px',
+    fontSize: 12,
     // marginBottom: 5,
   },
   input: {

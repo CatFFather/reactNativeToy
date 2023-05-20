@@ -23,6 +23,12 @@ export const screenSubTitle = {
   color: '#999999',
 };
 
+export const rowAlignCenter = {
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'center',
+};
+
 export function padding(a, b, c, d) {
   return {
     paddingTop: a,
@@ -31,3 +37,6 @@ export function padding(a, b, c, d) {
     paddingLeft: d ? d : b ? b : a,
   };
 }
+export const signatureColor = {
+  color: '#DB3E07',
+};

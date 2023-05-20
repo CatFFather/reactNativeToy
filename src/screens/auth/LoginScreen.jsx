@@ -7,10 +7,19 @@ import {
   StyleSheet,
   ScrollView,
 } from 'react-native';
-import SafeAreaView from '../../components/layout/SafeAreaView';
+// HOOK
 import useInput from '../../hooks/useInput';
+// COMPONENT
+import SafeAreaView from '../../components/layout/SafeAreaView';
 import LabelInput from '../../components/input/LabelInput';
-import { screenTitle, screenSubTitle } from '../../styles/commonStyle';
+import Dot from '../../components/common/Dot';
+// UTILE
+import {
+  screenTitle,
+  screenSubTitle,
+  rowAlignCenter,
+  signatureColor,
+} from '../../styles/commonStyle';
 export default function LoginScreen({ navigation }) {
   const userId = useInput({ placeholder: '아이디 입력' });
   const userPw = useInput({ placeholder: '비밀번호 입력' });
@@ -36,25 +45,30 @@ export default function LoginScreen({ navigation }) {
             inputProps={{ ...userPw, secureTextEntry: true }}
           />
           <View style={{ gap: '15px' }}>
-            <Button title="로그인" onPress={login} />
-            <Text>
+            <Button
+              title="로그인"
+              onPress={login}
+              color={signatureColor.color}
+            />
+            <View style={{ ...rowAlignCenter, gap: 8 }}>
               <Text onPress={() => navigation.navigate('JoinMemberScreen')}>
                 아이디 찾기
               </Text>
-              ////////////////////
+              <Dot />
               <Text onPress={() => navigation.navigate('JoinMemberScreen')}>
                 비밀번호 찾기
               </Text>
-            </Text>
+            </View>
           </View>
-        </View>
-        <View>
-          <Text>
-            계정이 없으신가요?
-            <Text onPress={() => navigation.navigate('JoinMemberScreen')}>
+          <View style={{ ...rowAlignCenter, gap: 4 }}>
+            <Text>계정이 없으신가요?</Text>
+            <Text
+              style={{ ...signatureColor, gap: 4 }}
+              onPress={() => navigation.navigate('JoinMemberScreen')}
+            >
               회원가입
             </Text>
-          </Text>
+          </View>
         </View>
       </View>
     </SafeAreaView>
