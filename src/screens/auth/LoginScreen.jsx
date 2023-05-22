@@ -1,13 +1,5 @@
 import React from 'react';
 import { Text, View, Button, StyleSheet } from 'react-native';
-// HOOK
-import useInput from '../../hooks/useInput';
-// COMPONENT
-import SafeAreaView from '../../components/layout/SafeAreaView';
-import LabelInput from '../../components/input/LabelInput';
-import Dot from '../../components/common/Dot';
-import CommonBtn from '../../components/button/CommonBtn';
-
 // UTILE
 import {
   screenTitle,
@@ -15,13 +7,31 @@ import {
   align,
   colors,
 } from '../../styles/commonStyle';
+// HOOK
+import useInput from '../../hooks/useInput';
+// STORE
+import { useAuthStore } from '../../stores/AuthStore';
+// COMPONENT
+import SafeAreaView from '../../components/layout/SafeAreaView';
+import LabelInput from '../../components/input/LabelInput';
+import Dot from '../../components/common/Dot';
+import CommonBtn from '../../components/button/CommonBtn';
+
 export default function LoginScreen({ navigation }) {
+  const { login } = useAuthStore((state) => state);
   const userId = useInput({ placeholder: '아이디 입력' });
   const userPw = useInput({ placeholder: '비밀번호 입력' });
   // login
-  function login() {
-    console.log('userId', userId);
-    console.log('userPw', userPw);
+  function setLogin() {
+    const params = { id: userId.value, pw: userPw.value, name: '테스트' };
+    login(params);
+  }
+  function setDisabled() {
+    const id = userId.value;
+    const pw = userPw.value;
+    return (
+      id == '' || id == ' ' || id == null || pw == '' || pw == ' ' || pw == null
+    );
   }
   return (
     <SafeAreaView header={false}>
@@ -40,7 +50,11 @@ export default function LoginScreen({ navigation }) {
             inputProps={{ ...userPw, secureTextEntry: true }}
           />
           <View style={{ gap: 15 }}>
-            <CommonBtn label="로그인" onPress={login} />
+            <CommonBtn
+              disabled={setDisabled()}
+              label="로그인"
+              onPress={setLogin}
+            />
             <View style={{ ...align.rowAlignCenter, gap: 8 }}>
               <Text>아이디 찾기</Text>
               <Dot />
