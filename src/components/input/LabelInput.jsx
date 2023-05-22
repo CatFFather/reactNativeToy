@@ -6,7 +6,7 @@ export default function labelInput(props) {
 
   return (
     <View>
-      <Text style={styles.lable}>{labelProps.name}</Text>
+      <Text style={styles.label}>{labelProps.name}</Text>
       <TextInput
         style={styles.input}
         placeholderTextColor="#BBBBBB"
@@ -17,7 +17,7 @@ export default function labelInput(props) {
 }
 
 const styles = StyleSheet.create({
-  lable: {
+  label: {
     color: '#000000',
     fontSize: 12,
     // marginBottom: 5,

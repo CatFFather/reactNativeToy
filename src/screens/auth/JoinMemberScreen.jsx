@@ -54,7 +54,7 @@ export default function JoinMemberScreen() {
             name={'checkcircle'}
             size={28}
             color={isChecked['ALL'] ? colors.signatureColor : colors.blank}
-            lable="전체동의"
+            label="전체동의"
             onPress={() => onPressCheckbox('ALL')}
           />
           <Divider></Divider>
@@ -63,7 +63,7 @@ export default function JoinMemberScreen() {
               name="check"
               size={28}
               color={isChecked['TERM'] ? colors.signatureColor : colors.blank}
-              lable="이용약관에 동의합니다."
+              label="이용약관에 동의합니다."
               onPress={() => onPressCheckbox('TERM')}
             />
             <AntDesign name="right" size={24} color="black" />
@@ -75,7 +75,7 @@ export default function JoinMemberScreen() {
               color={
                 isChecked['PERSONAL'] ? colors.signatureColor : colors.blank
               }
-              lable=" 개인정보 취급방침에 동의합니다."
+              label=" 개인정보 취급방침에 동의합니다."
               onPress={() => onPressCheckbox('PERSONAL')}
             />
             <AntDesign name="right" size={24} color="black" />
@@ -87,7 +87,7 @@ export default function JoinMemberScreen() {
               color={
                 isChecked['LOCATION'] ? colors.signatureColor : colors.blank
               }
-              lable=" 위치기반 서비스 이용 약관에 동의합니다."
+              label=" 위치기반 서비스 이용 약관에 동의합니다."
               onPress={() => onPressCheckbox('LOCATION')}
             />
             <AntDesign name="right" size={24} color="black" />
