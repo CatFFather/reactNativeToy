@@ -4,7 +4,7 @@ export const colors = {
 };
 
 export const withHeaderStyle = {
-  ...padding(40, 20, 40, 20),
+  ...padding(0, 20, 0, 20),
 };
 
 export const withoutHeaderStyle = {
