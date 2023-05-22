@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { AntDesign } from '@expo/vector-icons';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, StyleSheet, Pressable } from 'react-native';
 // UTILE
 import { align } from '../../styles/commonStyle';
 export default function JoinMemberScreen(props) {
-  const { name, color, lable, size } = props;
-  const [isChecked, setChecked] = useState(false);
+  const { name, color, lable, size, onPress } = props;
+
   return (
-    <View style={[align.basicRow, styles.checkbox]}>
+    <Pressable style={[align.basicRow, styles.checkbox]} onPress={onPress}>
       <AntDesign name={name} size={size} color={color} />
       <Text style={styles.lable}>{lable}</Text>
-    </View>
+    </Pressable>
   );
 }
 
