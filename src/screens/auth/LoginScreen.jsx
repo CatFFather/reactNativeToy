@@ -6,6 +6,8 @@ import useInput from '../../hooks/useInput';
 import SafeAreaView from '../../components/layout/SafeAreaView';
 import LabelInput from '../../components/input/LabelInput';
 import Dot from '../../components/common/Dot';
+import CommonBtn from '../../components/button/CommonBtn';
+
 // UTILE
 import {
   screenTitle,
@@ -38,11 +40,7 @@ export default function LoginScreen({ navigation }) {
             inputProps={{ ...userPw, secureTextEntry: true }}
           />
           <View style={{ gap: 15 }}>
-            <Button
-              title="로그인"
-              onPress={login}
-              color={colors.signatureColor}
-            />
+            <CommonBtn label="로그인" onPress={login} />
             <View style={{ ...align.rowAlignCenter, gap: 8 }}>
               <Text>아이디 찾기</Text>
               <Dot />
