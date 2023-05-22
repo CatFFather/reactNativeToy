@@ -26,6 +26,6 @@ const styles = StyleSheet.create({
     height: 40,
     borderBottomWidth: 1,
     borderColor: '#E5E5E5',
-    outlineStyle: 'none',
+    // outlineStyle: 'none',
   },
 });

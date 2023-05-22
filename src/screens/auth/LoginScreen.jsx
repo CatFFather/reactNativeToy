@@ -17,7 +17,7 @@ import Dot from '../../components/common/Dot';
 import {
   screenTitle,
   screenSubTitle,
-  rowAlignCenter,
+  align,
   signatureColor,
 } from '../../styles/commonStyle';
 export default function LoginScreen({ navigation }) {
@@ -35,7 +35,7 @@ export default function LoginScreen({ navigation }) {
         <Text style={{ ...screenSubTitle, marginBottom: 60 }}>
           안녕하세요, 회원님!
         </Text>
-        <View style={{ gap: '25px' }}>
+        <View style={{ gap: 25 }}>
           <LabelInput
             labelProps={{ name: '아이디' }}
             inputProps={{ ...userId }}
@@ -44,23 +44,19 @@ export default function LoginScreen({ navigation }) {
             labelProps={{ name: '비밀번호' }}
             inputProps={{ ...userPw, secureTextEntry: true }}
           />
-          <View style={{ gap: '15px' }}>
+          <View style={{ gap: 15 }}>
             <Button
               title="로그인"
               onPress={login}
               color={signatureColor.color}
             />
-            <View style={{ ...rowAlignCenter, gap: 8 }}>
-              <Text onPress={() => navigation.navigate('JoinMemberScreen')}>
-                아이디 찾기
-              </Text>
+            <View style={{ ...align.rowAlignCenter, gap: 8 }}>
+              <Text>아이디 찾기</Text>
               <Dot />
-              <Text onPress={() => navigation.navigate('JoinMemberScreen')}>
-                비밀번호 찾기
-              </Text>
+              <Text>비밀번호 찾기</Text>
             </View>
           </View>
-          <View style={{ ...rowAlignCenter, gap: 4 }}>
+          <View style={{ ...align.rowAlignCenter, gap: 4 }}>
             <Text>계정이 없으신가요?</Text>
             <Text
               style={{ ...signatureColor, gap: 4 }}

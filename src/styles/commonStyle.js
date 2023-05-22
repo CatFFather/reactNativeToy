@@ -23,10 +23,16 @@ export const screenSubTitle = {
   color: '#999999',
 };
 
-export const rowAlignCenter = {
-  flexDirection: 'row',
-  alignItems: 'center',
-  justifyContent: 'center',
+export const align = {
+  alignCenter: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  rowAlignCenter: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 };
 
 export function padding(a, b, c, d) {
