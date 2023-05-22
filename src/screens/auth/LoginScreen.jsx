@@ -1,12 +1,5 @@
-import React, { useState, startTransition, useEffect } from 'react';
-import {
-  Text,
-  View,
-  Button,
-  TextInput,
-  StyleSheet,
-  ScrollView,
-} from 'react-native';
+import React from 'react';
+import { Text, View, Button, StyleSheet } from 'react-native';
 // HOOK
 import useInput from '../../hooks/useInput';
 // COMPONENT
@@ -18,7 +11,7 @@ import {
   screenTitle,
   screenSubTitle,
   align,
-  signatureColor,
+  colors,
 } from '../../styles/commonStyle';
 export default function LoginScreen({ navigation }) {
   const userId = useInput({ placeholder: '아이디 입력' });
@@ -29,12 +22,12 @@ export default function LoginScreen({ navigation }) {
     console.log('userPw', userPw);
   }
   return (
-    <SafeAreaView>
-      <View>
-        <Text style={screenTitle}>로그인</Text>
-        <Text style={{ ...screenSubTitle, marginBottom: 60 }}>
-          안녕하세요, 회원님!
-        </Text>
+    <SafeAreaView header={false}>
+      <View style={{ flex: 1, gap: 60 }}>
+        <View>
+          <Text style={screenTitle}>로그인</Text>
+          <Text style={{ ...screenSubTitle }}>안녕하세요, 회원님!</Text>
+        </View>
         <View style={{ gap: 25 }}>
           <LabelInput
             labelProps={{ name: '아이디' }}
@@ -48,7 +41,7 @@ export default function LoginScreen({ navigation }) {
             <Button
               title="로그인"
               onPress={login}
-              color={signatureColor.color}
+              color={colors.signatureColor}
             />
             <View style={{ ...align.rowAlignCenter, gap: 8 }}>
               <Text>아이디 찾기</Text>
@@ -59,7 +52,7 @@ export default function LoginScreen({ navigation }) {
           <View style={{ ...align.rowAlignCenter, gap: 4 }}>
             <Text>계정이 없으신가요?</Text>
             <Text
-              style={{ ...signatureColor, gap: 4 }}
+              style={{ color: colors.signatureColor, gap: 4 }}
               onPress={() => navigation.navigate('JoinMemberScreen')}
             >
               회원가입
@@ -71,11 +64,4 @@ export default function LoginScreen({ navigation }) {
   );
 }
 
-const styles = StyleSheet.create({
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-  },
-});
+const styles = StyleSheet.create({});

@@ -4,20 +4,21 @@ import {
   SafeAreaView,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
+import { withHeaderStyle, withoutHeaderStyle } from '../../styles/commonStyle';
 
 export default function SafeAreaLayout(props) {
+  const { header } = props;
   const insets = useSafeAreaInsets();
   // console.log('insets', insets);
   return (
     <SafeAreaView
-    // style={{
-    //   position: 'relative',
-    //   ...insets,
-    // }}
+      style={[styles.wrap, header ? withHeaderStyle : withoutHeaderStyle]}
     >
       {props.children}
     </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  wrap: { flex: 1 },
+});

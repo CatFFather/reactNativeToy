@@ -9,7 +9,7 @@ import {
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { withHeaderStyle, withoutHeaderStyle } from './src/styles/commonStyle';
+import { colors } from './src/styles/commonStyle';
 // TODO Navigation 에 재정의 필요
 import LoginScreen from './src/screens/auth/LoginScreen'; // 로그인
 import JoinMemberScreen from './src/screens/auth/JoinMemberScreen'; // 회원가입
@@ -22,17 +22,22 @@ export default function App() {
     <SafeAreaProvider>
       <NavigationContainer>
         {/* before login */}
-        <Stack.Navigator initialRouteName="LoginScreen">
+        <Stack.Navigator
+          initialRouteName="LoginScreen"
+          screenOptions={{
+            cardStyle: { backgroundColor: colors.mainBackgroundColor },
+          }}
+        >
           <Stack.Group>
             <Stack.Screen
               name="LoginScreen"
               component={LoginScreen}
-              options={{ headerShown: false, ...withoutHeaderStyle }}
+              options={{ headerShown: false, backgroundColor: '#FFFFFF' }}
             />
             <Stack.Screen
               name="JoinMemberScreen"
               component={JoinMemberScreen}
-              options={{ title: '', ...withHeaderStyle }}
+              options={{ title: '' }}
             />
           </Stack.Group>
         </Stack.Navigator>

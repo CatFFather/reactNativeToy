@@ -1,14 +1,14 @@
+export const colors = {
+  mainBackgroundColor: '#FFFFFF',
+  signatureColor: '#DB3E07',
+};
+
 export const withHeaderStyle = {
-  cardStyle: {
-    backgroundColor: '#FFFFFF',
-  },
+  ...padding(40, 20, 40, 20),
 };
 
 export const withoutHeaderStyle = {
-  cardStyle: {
-    backgroundColor: '#FFFFFF',
-    ...padding(40, 20, 40, 20),
-  },
+  ...padding(40, 20, 40, 20),
 };
 
 export const screenTitle = {
@@ -43,6 +43,3 @@ export function padding(a, b, c, d) {
     paddingLeft: d ? d : b ? b : a,
   };
 }
-export const signatureColor = {
-  color: '#DB3E07',
-};
