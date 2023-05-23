@@ -21,12 +21,10 @@ export const withoutHeaderStyle = {
 export const screenTitle = {
   fontSize: 22,
   fontWeight: 700,
-  lineHeight: 33,
 };
 export const screenSubTitle = {
   fontSize: 16,
   fontWeight: 400,
-  lineHeight: 24,
   color: '#999999',
 };
 
