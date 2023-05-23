@@ -12,7 +12,6 @@ export const useAuthStore = create(
       ...authStateInitialData,
       // 로그인
       login: async (params) => {
-        console.log('params', params);
         const newUser = { ...params };
         set({ user: newUser });
       },

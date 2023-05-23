@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Button, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
 // UTILE
 import {
   screenTitle,
@@ -23,7 +23,7 @@ export default function LoginScreen({ navigation }) {
   const userPw = useInput({ placeholder: '비밀번호 입력' });
   // login
   function setLogin() {
-    const params = { id: userId.value, pw: userPw.value, name: '테스트' };
+    const params = { id: userId.value, pw: userPw.value, name: userId.value };
     login(params);
   }
   function setDisabled() {
