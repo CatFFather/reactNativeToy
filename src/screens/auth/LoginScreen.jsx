@@ -65,7 +65,7 @@ export default function LoginScreen({ navigation }) {
             <Text>계정이 없으신가요?</Text>
             <Text
               style={{ color: colors.signatureColor, gap: 4 }}
-              onPress={() => navigation.navigate('JoinMemberScreen')}
+              onPress={() => navigation.navigate('JoinMember')}
             >
               회원가입
             </Text>

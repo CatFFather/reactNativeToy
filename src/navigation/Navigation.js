@@ -24,25 +24,41 @@ const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const iconNames = {
-  Home: {
+  HomeMain: {
     focused: 'home',
     nonFocused: 'home-outline',
   },
-  Setting: {
+  SettingMain: {
     focused: 'settings',
     nonFocused: 'settings-outline',
   },
 };
 
-function WithHeader(props) {
-  console.log('props', props);
-  return <SafeAreaView header={false}></SafeAreaView>;
-}
+// function WithHeader(props) {
+//   console.log('props', props);
+//   return <SafeAreaView ></SafeAreaView>;
+// }
+const WithHeader = (Component) => (props) =>
+  (
+    <SafeAreaView>
+      <Component {...props} />
+    </SafeAreaView>
+  );
 
 function setScreen(name, headerShown) {}
 
-const beforeLoginStack = createStackNavigator();
-
+// const BeforeLoginStack = createStackNavigator(
+//   {
+//     Login: { screen: WithHeader(Login) },
+//     JoinMember: { screen: JoinMember },
+//   },
+//   {
+//     initialRouteName: 'LoginScreen',
+//     headerMode: 'none',
+//     cardStyle: { backgroundColor: colors.mainBackgroundColor },
+//   },
+// );
+// console.log('BeforeLoginStack', BeforeLoginStack);
 export default function Navigation() {
   const { user } = useAuthStore((state) => state);
   return (
