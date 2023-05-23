@@ -38,18 +38,18 @@ const iconNames = {
 //   console.log('props', props);
 //   return <SafeAreaView ></SafeAreaView>;
 // }
-const WithHeader = (Component) => (props) =>
-  (
-    <SafeAreaView>
-      <Component {...props} />
-    </SafeAreaView>
-  );
+// const WithHeader = (Component) => (props) =>
+//   (
+//     <SafeAreaView>
+//       <Component {...props} />
+//     </SafeAreaView>
+//   );
 
-function setScreen(name, headerShown) {}
+// function setScreen(name, headerShown) {}
 
 // const BeforeLoginStack = createStackNavigator(
 //   {
-//     Login: { screen: WithHeader(Login) },
+//     Login: { screen: Login },
 //     JoinMember: { screen: JoinMember },
 //   },
 //   {
@@ -101,22 +101,22 @@ export default function Navigation() {
                 const iconName = focused
                   ? iconNames[route.name].focused
                   : iconNames[route.name].nonFocused;
-
                 return <Ionicons name={iconName} size={size} color={color} />;
               },
               tabBarActiveTintColor: colors.signatureColor,
               tabBarInactiveTintColor: 'gray',
+              tabBarShowLabel: false,
             })}
           >
             <Tab.Screen
               name="HomeMain"
               component={HomeMain}
-              options={{ headerShown: false }}
+              options={{ headerShown: false, title: '홈' }}
             />
             <Tab.Screen
               name="SettingMain"
               component={SettingMain}
-              options={{ headerShown: false }}
+              options={{ title: '설정' }}
             />
           </Tab.Navigator>
         )}
