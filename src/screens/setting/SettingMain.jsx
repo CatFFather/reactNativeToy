@@ -1,5 +1,6 @@
 import React from 'react';
-import { Text, View, Button, StyleSheet } from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
+import { Text, View, Pressable, StyleSheet } from 'react-native';
 // UTILE
 import {
   screenTitle,
@@ -18,13 +19,28 @@ import Dot from '../../components/common/Dot';
 import CommonBtn from '../../components/button/CommonBtn';
 
 export default function SettingMain({ navigation }) {
+  const { logout } = useAuthStore((state) => state);
   return (
     <SafeAreaView header={false}>
       <View style={{ flex: 1 }}>
         <Text>SettingMain!!!!!!!!!</Text>
+        <Pressable style={[align.basicRow, styles.checkbox]}>
+          {/* <AntDesign name={name} size={size} color={color} /> */}
+          <Text style={styles.label} onPress={logout}>
+            로그아웃
+          </Text>
+        </Pressable>
       </View>
     </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  checkbox: {
+    gap: 10,
+  },
+  label: {
+    fontWeight: 400,
+    fontSize: 18,
+  },
+});
