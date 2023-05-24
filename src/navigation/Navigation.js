@@ -5,9 +5,9 @@ import {
   SafeAreaProvider,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 // STORE
 import { useAuthStore } from '../stores/AuthStore';
 // UTILE
@@ -19,9 +19,6 @@ import Login from '../screens/auth/LoginScreen'; // 로그인
 import JoinMember from '../screens/auth/JoinMemberScreen'; // 회원가입
 import HomeMain from '../screens/home/HomeMainScreen'; // HomeMain
 import SettingMain from '../screens/setting/SettingMainScreen'; // SettingMain
-
-const Stack = createStackNavigator();
-const Tab = createBottomTabNavigator();
 
 const iconNames = {
   HomeMain: {
@@ -47,18 +44,67 @@ const iconNames = {
 
 // function setScreen(name, headerShown) {}
 
-// const BeforeLoginStack = createStackNavigator(
-//   {
-//     Login: { screen: Login },
-//     JoinMember: { screen: JoinMember },
-//   },
-//   {
-//     initialRouteName: 'LoginScreen',
-//     headerMode: 'none',
-//     cardStyle: { backgroundColor: colors.mainBackgroundColor },
-//   },
-// );
-// console.log('BeforeLoginStack', BeforeLoginStack);
+const BeforeLoginStack = createStackNavigator();
+function BeforeLoginStackScreen() {
+  return (
+    <BeforeLoginStack.Navigator
+      initialRouteName="LoginScreen"
+      screenOptions={{
+        cardStyle: { backgroundColor: colors.mainBackgroundColor },
+      }}
+    >
+      <BeforeLoginStack.Screen
+        name="Login"
+        // component={(props) => {
+        //   console.log('props', props);
+        //   return (
+        //     <SafeAreaView header={false}>
+        //       <LoginScreen {...props} />
+        //     </SafeAreaView>
+        //   );
+        // }}
+        component={Login}
+        options={{ headerShown: false }}
+      />
+      <BeforeLoginStack.Screen
+        name="JoinMember"
+        component={JoinMember}
+        options={{ title: '' }}
+      />
+    </BeforeLoginStack.Navigator>
+  );
+}
+
+// HOME
+const HomeStack = createStackNavigator();
+function HomeStackScreen() {
+  return (
+    <HomeStack.Navigator>
+      <HomeStack.Screen
+        name="HomeMain"
+        component={HomeMain}
+        options={{ headerShown: false, title: '홈' }}
+      />
+    </HomeStack.Navigator>
+  );
+}
+
+// SETTING
+const SettingStack = createStackNavigator();
+function SettingStackScreen() {
+  return (
+    <SettingStack.Navigator>
+      <SettingStack.Screen
+        name="SettingMain"
+        component={SettingMain}
+        options={{ title: '설정' }}
+      />
+    </SettingStack.Navigator>
+  );
+}
+
+const AfterLoginTab = createBottomTabNavigator();
+
 export default function Navigation() {
   const { user } = useAuthStore((state) => state);
   return (
@@ -66,36 +112,10 @@ export default function Navigation() {
       <NavigationContainer>
         {!user ? (
           //  before login
-          <Stack.Navigator
-            initialRouteName="LoginScreen"
-            screenOptions={{
-              cardStyle: { backgroundColor: colors.mainBackgroundColor },
-            }}
-          >
-            <Stack.Group>
-              <Stack.Screen
-                name="Login"
-                // component={(props) => {
-                //   console.log('props', props);
-                //   return (
-                //     <SafeAreaView header={false}>
-                //       <LoginScreen {...props} />
-                //     </SafeAreaView>
-                //   );
-                // }}
-                component={Login}
-                options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                name="JoinMember"
-                component={JoinMember}
-                options={{ title: '' }}
-              />
-            </Stack.Group>
-          </Stack.Navigator>
+          <BeforeLoginStackScreen />
         ) : (
           //  after login
-          <Tab.Navigator
+          <AfterLoginTab.Navigator
             screenOptions={({ route }) => ({
               tabBarIcon: ({ focused, color, size }) => {
                 const iconName = focused
@@ -106,19 +126,15 @@ export default function Navigation() {
               tabBarActiveTintColor: colors.signatureColor,
               tabBarInactiveTintColor: 'gray',
               tabBarShowLabel: false,
+              headerShown: false,
             })}
           >
-            <Tab.Screen
-              name="HomeMain"
-              component={HomeMain}
-              options={{ headerShown: false, title: '홈' }}
-            />
-            <Tab.Screen
+            <AfterLoginTab.Screen name="HomeMain" component={HomeStackScreen} />
+            <AfterLoginTab.Screen
               name="SettingMain"
-              component={SettingMain}
-              options={{ title: '설정' }}
+              component={SettingStackScreen}
             />
-          </Tab.Navigator>
+          </AfterLoginTab.Navigator>
         )}
       </NavigationContainer>
     </SafeAreaProvider>
