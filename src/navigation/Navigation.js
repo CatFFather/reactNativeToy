@@ -18,7 +18,9 @@ import SafeAreaView from '../components/layout/SafeAreaView';
 import Login from '../screens/auth/LoginScreen'; // 로그인
 import JoinMember from '../screens/auth/JoinMemberScreen'; // 회원가입
 import HomeMain from '../screens/home/HomeMainScreen'; // HomeMain
+// SETTINGS
 import SettingMain from '../screens/setting/SettingMainScreen'; // SettingMain
+import MyInfoModify from '../screens/setting/MyInfoModifyScreen'; // SettingMain
 
 const iconNames = {
   HomeMain: {
@@ -98,6 +100,11 @@ function SettingStackScreen() {
         name="SettingMain"
         component={SettingMain}
         options={{ title: '설정' }}
+      />
+      <SettingStack.Screen
+        name="MyInfoModify"
+        component={MyInfoModify}
+        options={{ title: '내 정보 수정' }}
       />
     </SettingStack.Navigator>
   );

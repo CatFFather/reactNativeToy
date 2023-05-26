@@ -7,7 +7,7 @@ import { align } from '../../../styles/commonStyle';
 // STORE
 import { useAuthStore } from '../../../stores/AuthStore';
 const iconValue = {
-  form: { label: '내 정보 수정', path: 'HomeMain' },
+  form: { label: '내 정보 수정', path: 'MyInfoModify' },
   logout: { label: '로그아웃', path: 'HomeMain' },
   infocirlceo: { label: '버전 정보', path: 'HomeMain' },
   filetext1: { label: '이용 약관', path: 'HomeMain' },
