@@ -44,6 +44,11 @@ export const align = {
   },
 };
 
+export const commonLabel = {
+  color: '#000000',
+  fontSize: 12,
+};
+
 export function padding(a, b, c, d) {
   return {
     paddingTop: a,

@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
+import { commonLabel } from '../../styles/commonStyle';
 
 export default function labelInput(props) {
   const { labelProps, inputProps } = props;
@@ -18,9 +19,7 @@ export default function labelInput(props) {
 
 const styles = StyleSheet.create({
   label: {
-    color: '#000000',
-    fontSize: 12,
-    // marginBottom: 5,
+    ...commonLabel,
   },
   input: {
     height: 40,
