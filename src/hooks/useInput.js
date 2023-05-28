@@ -1,4 +1,4 @@
-import React, { useState, startTransition } from 'react';
+import React, { useState } from 'react';
 
 export default function useInput(props) {
   const { placeholder, initValue } = props;
@@ -7,6 +7,6 @@ export default function useInput(props) {
   return {
     placeholder,
     value,
-    onChangeText: (v) => startTransition(() => setValue(v)),
+    onChangeText: (v) => setValue(v),
   };
 }
