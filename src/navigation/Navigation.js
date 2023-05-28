@@ -5,7 +5,10 @@ import {
   SafeAreaProvider,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
-import { NavigationContainer } from '@react-navigation/native';
+import {
+  NavigationContainer,
+  getFocusedRouteNameFromRoute,
+} from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 // STORE
@@ -104,7 +107,7 @@ function SettingStackScreen() {
       <SettingStack.Screen
         name="MyInfoModify"
         component={MyInfoModify}
-        options={{ title: '내 정보 수정' }}
+        options={{ title: '내 정보 수정', tabBarStyle: { display: 'none' } }}
       />
     </SettingStack.Navigator>
   );
@@ -139,10 +142,29 @@ export default function Navigation() {
             <AfterLoginTab.Screen
               name="HomeMainTab"
               component={HomeStackScreen}
+              options={({ route }) => {
+                const focusedRouteName =
+                  getFocusedRouteNameFromRoute(route) || 'HomeMain';
+                return {
+                  tabBarStyle: {
+                    display: focusedRouteName === 'HomeMain' ? 'flex' : 'none',
+                  },
+                };
+              }}
             />
             <AfterLoginTab.Screen
               name="SettingMainTab"
               component={SettingStackScreen}
+              options={({ route }) => {
+                const focusedRouteName =
+                  getFocusedRouteNameFromRoute(route) || 'SettingMain';
+                return {
+                  tabBarStyle: {
+                    display:
+                      focusedRouteName === 'SettingMain' ? 'flex' : 'none',
+                  },
+                };
+              }}
             />
           </AfterLoginTab.Navigator>
         )}
