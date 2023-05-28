@@ -23,11 +23,11 @@ import SettingMain from '../screens/setting/SettingMainScreen'; // SettingMain
 import MyInfoModify from '../screens/setting/MyInfoModifyScreen'; // SettingMain
 
 const iconNames = {
-  HomeMain: {
+  HomeMainTab: {
     focused: 'home',
     nonFocused: 'home-outline',
   },
-  SettingMain: {
+  SettingMainTab: {
     focused: 'settings',
     nonFocused: 'settings-outline',
   },
@@ -50,7 +50,7 @@ const BeforeLoginStack = createStackNavigator();
 function BeforeLoginStackScreen() {
   return (
     <BeforeLoginStack.Navigator
-      initialRouteName="LoginScreen"
+      initialRouteName="Login"
       screenOptions={{
         cardStyle: { backgroundColor: colors.mainBackgroundColor },
       }}
@@ -136,9 +136,12 @@ export default function Navigation() {
               headerShown: false,
             })}
           >
-            <AfterLoginTab.Screen name="HomeMain" component={HomeStackScreen} />
             <AfterLoginTab.Screen
-              name="SettingMain"
+              name="HomeMainTab"
+              component={HomeStackScreen}
+            />
+            <AfterLoginTab.Screen
+              name="SettingMainTab"
               component={SettingStackScreen}
             />
           </AfterLoginTab.Navigator>
