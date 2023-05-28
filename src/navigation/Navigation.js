@@ -36,6 +36,10 @@ const iconNames = {
   },
 };
 
+const noneTabBarRoute = {
+  MyInfoModify: true,
+};
+
 // function WithHeader(props) {
 //   console.log('props', props);
 //   return <SafeAreaView ></SafeAreaView>;
@@ -102,19 +106,22 @@ function SettingStackScreen() {
       <SettingStack.Screen
         name="SettingMain"
         component={SettingMain}
-        options={{ title: '설정' }}
+        options={{ headerShown: false, title: '설정' }}
       />
       <SettingStack.Screen
         name="MyInfoModify"
         component={MyInfoModify}
-        options={{ title: '내 정보 수정', tabBarStyle: { display: 'none' } }}
+        options={{ title: '내 정보 수정' }}
       />
     </SettingStack.Navigator>
   );
 }
 
 const AfterLoginTab = createBottomTabNavigator();
-
+function getTabBarVisibility(route) {
+  const routeName = getFocusedRouteNameFromRoute(route);
+  return noneTabBarRoute[routeName] ? 'none' : 'flex';
+}
 export default function Navigation() {
   const { user } = useAuthStore((state) => state);
   return (
@@ -137,34 +144,18 @@ export default function Navigation() {
               tabBarInactiveTintColor: 'gray',
               tabBarShowLabel: false,
               headerShown: false,
+              tabBarStyle: {
+                display: getTabBarVisibility(route),
+              },
             })}
           >
             <AfterLoginTab.Screen
               name="HomeMainTab"
               component={HomeStackScreen}
-              options={({ route }) => {
-                const focusedRouteName =
-                  getFocusedRouteNameFromRoute(route) || 'HomeMain';
-                return {
-                  tabBarStyle: {
-                    display: focusedRouteName === 'HomeMain' ? 'flex' : 'none',
-                  },
-                };
-              }}
             />
             <AfterLoginTab.Screen
               name="SettingMainTab"
               component={SettingStackScreen}
-              options={({ route }) => {
-                const focusedRouteName =
-                  getFocusedRouteNameFromRoute(route) || 'SettingMain';
-                return {
-                  tabBarStyle: {
-                    display:
-                      focusedRouteName === 'SettingMain' ? 'flex' : 'none',
-                  },
-                };
-              }}
             />
           </AfterLoginTab.Navigator>
         )}
