@@ -60,6 +60,7 @@ function BeforeLoginStackScreen() {
       initialRouteName="Login"
       screenOptions={{
         cardStyle: { backgroundColor: colors.mainBackgroundColor },
+        headerTitleAlign: 'center',
       }}
     >
       <BeforeLoginStack.Screen
@@ -88,7 +89,11 @@ function BeforeLoginStackScreen() {
 const HomeStack = createStackNavigator();
 function HomeStackScreen() {
   return (
-    <HomeStack.Navigator>
+    <HomeStack.Navigator
+      screenOptions={{
+        headerTitleAlign: 'center',
+      }}
+    >
       <HomeStack.Screen
         name="HomeMain"
         component={HomeMain}
@@ -102,7 +107,12 @@ function HomeStackScreen() {
 const SettingStack = createStackNavigator();
 function SettingStackScreen() {
   return (
-    <SettingStack.Navigator>
+    <SettingStack.Navigator
+      screenOptions={{
+        // headerTitle 이걸로 header 커스텀 가능
+        headerTitleAlign: 'center',
+      }}
+    >
       <SettingStack.Screen
         name="SettingMain"
         component={SettingMain}
