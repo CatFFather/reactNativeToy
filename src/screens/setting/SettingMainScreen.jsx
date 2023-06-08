@@ -1,4 +1,5 @@
 import React from 'react';
+import { AntDesign } from '@expo/vector-icons';
 import { Text, View, StyleSheet, ScrollView } from 'react-native';
 // UTILE
 import { screenTitle, screenSubTitle, align } from '../../styles/commonStyle';
@@ -16,7 +17,10 @@ export default function SettingMain({ navigation }) {
       <ScrollView>
         <View style={{ gap: 30 }}>
           {/* 이름 */}
-          <View>
+          <View style={styles.userInfo}>
+            <Text style={screenTitle}>
+              <AntDesign name="user" size={28} color="black" />
+            </Text>
             <Text style={screenTitle}>{user.name} 님</Text>
           </View>
           <Divider />
@@ -44,6 +48,10 @@ export default function SettingMain({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+  userInfo: {
+    ...align.basicRow,
+    gap: 10,
+  },
   subTitle: {
     ...screenSubTitle,
     fontSize: 12,
