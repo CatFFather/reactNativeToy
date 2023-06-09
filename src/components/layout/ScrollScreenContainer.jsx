@@ -32,7 +32,7 @@ export default function ScreenContainer(props) {
 
   return (
     <SafeAreaView
-      style={[styles.common, { marginTop: isHeader && -insets.top }]}
+      style={[styles.common, { marginTop: isHeader ? -insets.top : 0 }]}
     >
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : ''}
@@ -41,7 +41,7 @@ export default function ScreenContainer(props) {
         <ScrollView
           style={[
             styles.common,
-            { maxHeight: windowHeight - (isHeader && basicHeader.height) },
+            { maxHeight: windowHeight - (isHeader ? basicHeader.height : 0) },
           ]}
           contentContainerStyle={styles.scrollViewContentContainerStyle}
           contentInsetAdjustmentBehavior="automatic"
