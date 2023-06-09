@@ -1,30 +1,27 @@
 import React from 'react';
-import { Text, View, Button, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 // UTILE
-import {
-  screenTitle,
-  screenSubTitle,
-  align,
-  colors,
-} from '../../styles/commonStyle';
-// HOOK
-import useInput from '../../hooks/useInput';
+import { withoutHeaderStyle } from '../../styles/commonStyle';
 // STORE
 import { useAuthStore } from '../../stores/AuthStore';
 // COMPONENT
-import SafeAreaView from '../../components/layout/SafeAreaView';
-import LabelInput from '../../components/input/LabelInput';
-import Dot from '../../components/common/Dot';
-import CommonBtn from '../../components/button/CommonBtn';
+import ScrollScreenContainer from '../../components/layout/ScrollScreenContainer';
 
-export default function Home({ navigation }) {
+export default function HomeMainScreen({ navigation }) {
+  const { user } = useAuthStore((state) => state);
   return (
-    <SafeAreaView header={false}>
-      <View style={{ flex: 1 }}>
-        <Text>HOME!!!!!!!!!</Text>
+    <ScrollScreenContainer isHeader={false}>
+      <View style={styles.container}>
+        <Text>home!!!!</Text>
       </View>
-    </SafeAreaView>
+    </ScrollScreenContainer>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    ...withoutHeaderStyle,
+    gap: 30,
+    flex: 1,
+  },
+});
