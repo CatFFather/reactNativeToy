@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import {
+  SafeAreaView,
+  useSafeAreaInsets,
+} from 'react-native-safe-area-context';
 import {
   Dimensions,
   KeyboardAvoidingView,
@@ -7,11 +10,12 @@ import {
   Platform,
   StyleSheet,
 } from 'react-native';
-
-const headerHeight = 64; // headerHeight는 전역 관리 해야 할 듯
+// UTILE
+import { basicHeader } from '../../styles/commonStyle';
 
 export default function ScreenContainer(props) {
-  const { children } = props;
+  const { children, isHeader } = props;
+  const insets = useSafeAreaInsets();
   const [windowHeight, setWindowHeight] = useState(
     Dimensions.get('window').height,
   );
@@ -27,13 +31,19 @@ export default function ScreenContainer(props) {
   }, []);
 
   return (
-    <SafeAreaView style={styles.common}>
+    <SafeAreaView
+      style={[styles.common, { marginTop: isHeader && -insets.top }]}
+    >
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : ''}
         style={styles.common}
       >
         <ScrollView
-          style={{ ...styles.common, maxHeight: windowHeight - headerHeight }}
+          style={[
+            styles.common,
+            { maxHeight: windowHeight - (isHeader && basicHeader.height) },
+          ]}
+          contentContainerStyle={styles.scrollViewContentContainerStyle}
           contentInsetAdjustmentBehavior="automatic"
           keyboardShouldPersistTaps="handled"
         >
@@ -47,5 +57,8 @@ export default function ScreenContainer(props) {
 const styles = StyleSheet.create({
   common: {
     flex: 1,
+  },
+  scrollViewContentContainerStyle: {
+    flexGrow: 1,
   },
 });

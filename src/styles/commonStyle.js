@@ -1,3 +1,7 @@
+export const basicHeader = {
+  height: 64,
+};
+
 export const colors = {
   mainBackgroundColor: '#FFFFFF',
   signatureColor: '#DB3E07',
