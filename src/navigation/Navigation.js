@@ -73,13 +73,16 @@ function BeforeLoginStackScreen() {
         //     </SafeAreaView>
         //   );
         // }}
+        screenOptions={{
+          headerTitleAlign: 'center',
+        }}
         component={Login}
         options={{ headerShown: false }}
       />
       <BeforeLoginStack.Screen
         name="JoinMember"
         component={JoinMember}
-        options={{ title: '' }}
+        options={{ title: '회원가입' }}
       />
     </BeforeLoginStack.Navigator>
   );
