@@ -11,11 +11,20 @@ import { useAuthStore } from '../../stores/AuthStore';
 import ScrollScreenContainer from '../../components/layout/ScrollScreenContainer';
 import ImageViewer from '../../components/img/ImageViewer';
 import Button from '../../components/button/Button';
+import CircleButton from '../../components/button/CircleButton';
+import IconButton from '../../components/button/IconButton';
+
+import EmojiPicker from '../../components/modal/EmojiPicker';
+import EmojiList from '../../components/container/home/EmojiList';
+import EmojiSticker from '../../components/container/home/EmojiSticker';
 
 const PlaceholderImage = require('../../assets/images/background-image.png');
-// TODO 최신 Expo 환경에서 복수 이미지 업로드하는 방법 https://joonfluence.tistory.com/m/634 이것도 해보기
+// TODO 최신 Expo 환경에서 복수 이미지 업로드하는 방법 https://joonfluence.tistory.com/m/634 이것도 해보기 , https://snack.expo.dev/S1SSmaE6z?platform=web
 export default function HomeMainScreen({ navigation }) {
   const { user } = useAuthStore((state) => state);
+  const [pickedEmoji, setPickedEmoji] = useState(null);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [showAppOptions, setShowAppOptions] = useState(false);
   const [status, requestPermission] = ImagePicker.useMediaLibraryPermissions();
   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -53,9 +62,26 @@ export default function HomeMainScreen({ navigation }) {
     if (!result.canceled) {
       console.log(result);
       setSelectedImage(result.assets[0].uri);
+      setShowAppOptions(true);
     } else {
       alert('You did not select any image.');
     }
+  };
+
+  const onReset = () => {
+    setShowAppOptions(false);
+  };
+
+  const onAddSticker = () => {
+    // we will implement this later
+    setIsModalVisible(true);
+  };
+
+  const onSaveImageAsync = async () => {
+    // we will implement this later
+  };
+  const onModalClose = () => {
+    setIsModalVisible(false);
   };
   return (
     <ScrollScreenContainer isHeader={false}>
@@ -65,15 +91,38 @@ export default function HomeMainScreen({ navigation }) {
             placeholderImageSource={PlaceholderImage}
             selectedImage={selectedImage}
           />
+          {pickedEmoji !== null ? (
+            <EmojiSticker imageSize={40} stickerSource={pickedEmoji} />
+          ) : null}
         </View>
-        <View style={styles.footerContainer}>
-          <Button
-            theme="primary"
-            label="Choose a photo"
-            onPress={pickImageAsync}
-          />
-          <Button label="Use this photo" />
-        </View>
+        {showAppOptions ? (
+          <View style={styles.optionsContainer}>
+            <View style={styles.optionsRow}>
+              <IconButton icon="refresh" label="Reset" onPress={onReset} />
+              <CircleButton onPress={onAddSticker} />
+              <IconButton
+                icon="save-alt"
+                label="Save"
+                onPress={onSaveImageAsync}
+              />
+            </View>
+          </View>
+        ) : (
+          <View style={styles.footerContainer}>
+            <Button
+              theme="primary"
+              label="Choose a photo"
+              onPress={pickImageAsync}
+            />
+            <Button
+              label="Use this photo"
+              onPress={() => setShowAppOptions(true)}
+            />
+          </View>
+        )}
+        <EmojiPicker isVisible={isModalVisible} onClose={onModalClose}>
+          <EmojiList onSelect={setPickedEmoji} onCloseModal={onModalClose} />
+        </EmojiPicker>
         <StatusBar style="auto" />
       </View>
     </ScrollScreenContainer>
@@ -95,5 +144,13 @@ const styles = StyleSheet.create({
   footerContainer: {
     flex: 1 / 3,
     alignItems: 'center',
+  },
+  optionsContainer: {
+    position: 'absolute',
+    bottom: 80,
+  },
+  optionsRow: {
+    alignItems: 'center',
+    flexDirection: 'row',
   },
 });
