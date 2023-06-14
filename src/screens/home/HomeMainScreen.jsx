@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, Text, Image } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import * as ImagePicker from 'expo-image-picker';
-import * as Permissions from 'expo-permissions';
+// import * as Permissions from 'expo-permissions';
 // UTILE
 import { withoutHeaderStyle } from '../../styles/commonStyle';
 // STORE
@@ -14,9 +15,9 @@ import Button from '../../components/button/Button';
 import CircleButton from '../../components/button/CircleButton';
 import IconButton from '../../components/button/IconButton';
 
-import EmojiPicker from '../../components/modal/EmojiPicker';
-import EmojiList from '../../components/container/home/EmojiList';
-import EmojiSticker from '../../components/container/home/EmojiSticker';
+import EmojiPicker from '../../components/modal/EmojiPicker'; // 이모지 모달
+import EmojiList from '../../components/container/home/EmojiList'; // 이모지 리스트
+import EmojiSticker from '../../components/container/home/EmojiSticker'; // 선택한 이모지
 
 const PlaceholderImage = require('../../assets/images/background-image.png');
 // TODO 최신 Expo 환경에서 복수 이미지 업로드하는 방법 https://joonfluence.tistory.com/m/634 이것도 해보기 , https://snack.expo.dev/S1SSmaE6z?platform=web
@@ -28,16 +29,16 @@ export default function HomeMainScreen({ navigation }) {
   const [status, requestPermission] = ImagePicker.useMediaLibraryPermissions();
   const [selectedImage, setSelectedImage] = useState(null);
 
-  const askPermissionsAsync = async () => {
-    await Permissions.askAsync(Permissions.CAMERA);
-    await Permissions.askAsync(Permissions.MEDIA_LIBRARY);
-    // you would probably do something to verify that permissions
-    // are actually granted, but I'm skipping that for brevity
-  };
+  // const askPermissionsAsync = async () => {
+  //   await Permissions.askAsync(Permissions.CAMERA);
+  //   await Permissions.askAsync(Permissions.MEDIA_LIBRARY);
+  //   // you would probably do something to verify that permissions
+  //   // are actually granted, but I'm skipping that for brevity
+  // };
 
-  useEffect(() => {
-    askPermissionsAsync();
-  }, []);
+  // useEffect(() => {
+  //   askPermissionsAsync();
+  // }, []);
 
   const pickImageAsync = async () => {
     console.log('status', status);
@@ -85,7 +86,7 @@ export default function HomeMainScreen({ navigation }) {
   };
   return (
     <ScrollScreenContainer isHeader={false}>
-      <View style={styles.container}>
+      <GestureHandlerRootView style={styles.container}>
         <View style={styles.imageContainer}>
           <ImageViewer
             placeholderImageSource={PlaceholderImage}
@@ -124,7 +125,7 @@ export default function HomeMainScreen({ navigation }) {
           <EmojiList onSelect={setPickedEmoji} onCloseModal={onModalClose} />
         </EmojiPicker>
         <StatusBar style="auto" />
-      </View>
+      </GestureHandlerRootView>
     </ScrollScreenContainer>
   );
 }
